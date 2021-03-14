@@ -5,6 +5,8 @@ import cors from 'cors';
 
 import postRoutes from './routes/posts.js'
 
+// require('dotenv').config();
+
 // Configuration
 const app = express();
 
@@ -16,11 +18,11 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));     // Procee
 app.use(cors());
 
 // My MongoDB cluster uri and setting the PORT to localhost:5000. **Hide in a .env file later.**
-const CONNECTION_URL = 'mongodb+srv://Jake:jake123@jakebook.kmm2a.mongodb.net/Jakebook?retryWrites=true&w=majority'; 
+const ATLAS_URI = 'mongodb+srv://Jake:jake123@jakebook.kmm2a.mongodb.net/Jakebook?retryWrites=true&w=majority'; 
 const PORT = process.env.PORT || 5000;
 
 // Connecting to the server using a promise.
-mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(ATLAS_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => app.listen(PORT, () => console.log(`Server running on port: ${PORT}`)))
   .catch((error) => console.log(error.message));
 
