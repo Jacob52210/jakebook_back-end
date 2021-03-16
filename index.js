@@ -11,11 +11,11 @@ import postRoutes from './routes/posts.js'
 const app = express();
 
 // Express middleware for assigning the routes.
-app.use('/posts', postRoutes);
-
 app.use(bodyParser.json({ limit: "30mb", extended: true }));           // Turns out, body-parser is now included with express.
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));     // Proceeding regardless. See here for any issues.
 app.use(cors());
+
+app.use('/posts', postRoutes);
 
 // My MongoDB cluster uri and setting the PORT to localhost:5000. **Hide in a .env file later.**
 const ATLAS_URI = 'mongodb+srv://Jake:jake123@jakebook.kmm2a.mongodb.net/Jakebook?retryWrites=true&w=majority'; 
